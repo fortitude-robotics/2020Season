@@ -48,14 +48,14 @@ public class TankDrive extends Subsystem
     //upper left
     if(axisX <= 0 && axisY >= 0)
     {
-      leftPWR = axisY + axisX;
+      leftPWR = axisY - Math.abs(axisX);
       rightPWR = axisY + Math.abs(axisX);
     }
     //lower left
     if(axisX < 0 && axisY < 0)
     {
-      leftPWR = axisY + Math.abs(axisX);
-      rightPWR = axisY + axisX;
+      leftPWR = axisY + axisX;
+      rightPWR = Math.abs(axisX) - Math.abs(axisY);
     }
     //lower right
     if(axisX >= 0 && axisY <= 0)

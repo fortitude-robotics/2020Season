@@ -15,7 +15,7 @@ package frc.robot;
  */
 public class RobotMap 
 {
-  public final static int DRIVER_CONTROLLER = 1;
+  public final static int DRIVER_CONTROLLER = 0;
 
   public static double SCALEFACTOR = 0.6;
 
