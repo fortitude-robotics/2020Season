@@ -45,35 +45,20 @@ public class TankDrive extends Subsystem
     double axisY = (double) axis.elementAt(1);
     double leftPWR = 0;
     double rightPWR = 0;
-    //upper left
-    if(axisX <= 0 && axisY >= 0)
-    {
-      leftPWR = axisY - Math.abs(axisX);
-      rightPWR = axisY + Math.abs(axisX);
-    }
-    //lower left
-    if(axisX < 0 && axisY < 0)
-    {
-      leftPWR = axisY + axisX;
-      rightPWR = Math.abs(axisX) - Math.abs(axisY);
-    }
-    //lower right
-    if(axisX >= 0 && axisY <= 0)
-    {
-      leftPWR = axisY + axisX;
-      rightPWR = axisY - axisX;
-    }
-    //upper right
-    if(axisX > 0 && axisY > 0)
-    {
-      leftPWR = axisY + axisX;
-      rightPWR = axisY - axisX;
+    double turn = 0.5;
+
+    leftPWR = axisY + (axisX * turn);
+    rightPWR = axisY - (axisX * turn);
+
+    if(axisY > 0){
+      leftPWR = axisY - (axisX * turn);
+      rightPWR = axisY + (axisX * turn);
     }
 
-    double LFactor = leftPWR * RobotMap.SCALEFACTOR;
-    double RFactor = rightPWR * RobotMap.SCALEFACTOR;
+    double LFactor = leftPWR * RobotMap.SCALEFACTOR; 
+    double RFactor = rightPWR  * RobotMap.SCALEFACTOR;
 
-    Drivetrain.tankDrive(LFactor, RFactor);
+    Drivetrain.tankDrive(RFactor, LFactor, true);
   }
   public void setfollow()
   {
