@@ -21,7 +21,6 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.EncoderType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-
 /**
  * Add your docs here.
  */
@@ -32,6 +31,8 @@ public class TankDrive extends Subsystem
   private CANSparkMax leftRearMotor = new CANSparkMax(RobotMap.REAR_LEFT_MOTOR, MotorType.kBrushless);
   private CANSparkMax rightRearMotor = new CANSparkMax(RobotMap.REAR_RIGHT_MOTOR, MotorType.kBrushless);
   private DifferentialDrive Drivetrain = new DifferentialDrive(leftFrontMotor,rightFrontMotor);
+  double RFactor;
+  double LFactor;
 
   @Override
   public void initDefaultCommand() 
@@ -45,21 +46,41 @@ public class TankDrive extends Subsystem
     double axisY = (double) axis.elementAt(1);
     double leftPWR = 0;
     double rightPWR = 0;
-    double turn = 0.5;
+    double turn = 0.6;
 
     leftPWR = axisY + (axisX * turn);
     rightPWR = axisY - (axisX * turn);
 
-    if(axisY > 0){
+    if(axisY > 0.2){
       leftPWR = axisY - (axisX * turn);
       rightPWR = axisY + (axisX * turn);
     }
 
-    double LFactor = leftPWR * RobotMap.SCALEFACTOR; 
-    double RFactor = rightPWR  * RobotMap.SCALEFACTOR;
+    LFactor = leftPWR * RobotMap.SCALEFACTOR; 
+    RFactor = rightPWR  * RobotMap.SCALEFACTOR;
 
-    Drivetrain.tankDrive(RFactor, LFactor, true);
+    Drivetrain.tankDrive(RFactor, LFactor, false);
   }
+
+  public String readEncoder()
+  {
+    int cpr2 = 0;
+    int cpr4 = 0;
+    
+    CANEncoder LFM = leftFrontMotor.getEncoder(EncoderType.kHallSensor, cpr2);
+    CANEncoder RFM = rightFrontMotor.getEncoder(EncoderType.kHallSensor, cpr4);
+    String encVal = "(" + 
+    String.format("%.2f",LFM.getVelocity()) +"  "+ String.format("%.2f",leftFrontMotor.getAppliedOutput()) +"\t"+
+    String.format("%.2f",RFM.getVelocity()) +"  "+ String.format("%.2f",rightFrontMotor.getAppliedOutput()) +"\t";
+    SmartDashboard.putNumber("left front", LFM.getVelocity());
+    SmartDashboard.putNumber("right front", RFM.getVelocity());
+    if(RFactor != 0 && LFactor != 0) {
+      System.out.print("RFactor: " + String.format("%.3f",RFactor) + "  ");
+      System.out.println("LFactor: " + String.format("%.3f",LFactor));
+    }
+    return encVal;
+  }
+
   public void setfollow()
   {
     leftRearMotor.follow(leftFrontMotor);
