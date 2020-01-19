@@ -7,12 +7,12 @@
 
 package frc.robot;
 
-import java.util.Vector;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.subsystems.Camera;
 import frc.robot.subsystems.TankDrive;
 
 /**
@@ -25,6 +25,7 @@ import frc.robot.subsystems.TankDrive;
 public class Robot extends TimedRobot {
   public static OI m_oi;
   public static TankDrive drivetrain = new TankDrive();
+  public static Camera limelight2 = new Camera();
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -51,7 +52,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    drivetrain.readEncoder();
+    drivetrain.print();
+    limelight2.print();
   }
 
   /**

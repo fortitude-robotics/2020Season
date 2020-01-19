@@ -8,17 +8,41 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
 
 /**
  * Add your docs here.
  */
-public class Camera extends Subsystem {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
+public class Camera extends Subsystem 
+{
+  NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+  NetworkTableEntry tx = table.getEntry("tx");
+  NetworkTableEntry ty = table.getEntry("ty");
+  NetworkTableEntry ta = table.getEntry("ta");
+
+  //read values periodically
+  double x = tx.getDouble(0.0);
+  double y = ty.getDouble(0.0);
+  double area = ta.getDouble(0.0);
+
 
   @Override
-  public void initDefaultCommand() {
+  public void initDefaultCommand() 
+  {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
+  }
+
+  public void print()
+  {
+    
+      System.out.print("X: " + x);
+      System.out.print(" Y: " + y);
+      System.out.println(" area: " + area);
+   
+
   }
 }

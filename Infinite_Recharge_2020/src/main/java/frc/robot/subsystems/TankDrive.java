@@ -13,6 +13,7 @@ import frc.robot.RobotMap;
 import frc.robot.commands.Drive;
 import edu.wpi.first.wpilibj.drive.*;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpiutil.math.MathUtil;
 
 import java.util.Vector;
 
@@ -44,25 +45,48 @@ public class TankDrive extends Subsystem
   {
     double axisX = (double) axis.elementAt(0);
     double axisY = (double) axis.elementAt(1);
+
     double leftPWR = 0;
     double rightPWR = 0;
-    double turn = 0.6;
+   
 
-    leftPWR = axisY + (axisX * turn);
-    rightPWR = axisY - (axisX * turn);
+    
 
-    if(axisY > 0.2){
-      leftPWR = axisY - (axisX * turn);
-      rightPWR = axisY + (axisX * turn);
+    if(axisY <= 0.0)
+    {
+      if(axisX > 0.0)
+      {
+        leftPWR = Math.copySign(Math.sqrt(Math.pow(axisY, 2) + Math.pow(axisX, 2)),axisX);
+        rightPWR = Math.copySign(Math.sqrt(Math.abs(Math.pow(axisY, 2) - Math.pow(axisX, 2))),(Math.abs(axisY)-axisX));
+      }
+      else
+      {
+        leftPWR = Math.copySign(Math.sqrt(Math.pow(axisY, 2) + Math.pow(axisX, 2)),Math.abs(axisY)-Math.abs(axisX));
+        rightPWR = Math.sqrt(Math.pow(axisY, 2) + Math.pow(Math.abs(axisX),2));
+      }
     }
+    else
+    {
+      if(axisX >= 0.0)
+      {
+        leftPWR = Math.copySign(Math.sqrt(Math.pow(Math.abs(axisY),2) + Math.pow(axisX, 2)),axisX-axisY);
+        rightPWR = Math.copySign(Math.sqrt(Math.pow(Math.abs(axisY),2) + Math.pow(axisX, 2)),-1);
+      }
+      else
+      {
+        leftPWR = Math.copySign(Math.sqrt(Math.pow(Math.abs(axisY),2) + Math.pow(axisX, 2)),axisX);
+        rightPWR = Math.copySign(Math.sqrt(Math.pow(Math.abs(axisY),2) - Math.pow(axisX, 2)),(Math.abs(axisY)-axisX));
+      }
+    }
+  
 
     LFactor = leftPWR * RobotMap.SCALEFACTOR; 
     RFactor = rightPWR  * RobotMap.SCALEFACTOR;
 
-    Drivetrain.tankDrive(RFactor, LFactor, false);
+    Drivetrain.tankDrive(-LFactor, -RFactor, false);
   }
 
-  public String readEncoder()
+  public String print()
   {
     int cpr2 = 0;
     int cpr4 = 0;
@@ -74,7 +98,7 @@ public class TankDrive extends Subsystem
     String.format("%.2f",RFM.getVelocity()) +"  "+ String.format("%.2f",rightFrontMotor.getAppliedOutput()) +"\t";
     SmartDashboard.putNumber("left front", LFM.getVelocity());
     SmartDashboard.putNumber("right front", RFM.getVelocity());
-    if(RFactor != 0 && LFactor != 0) {
+    if(RFactor > 0.005 || LFactor > 0.005 || RFactor < 0 || LFactor < 0) {
       System.out.print("RFactor: " + String.format("%.3f",RFactor) + "  ");
       System.out.println("LFactor: " + String.format("%.3f",LFactor));
     }

@@ -17,7 +17,7 @@ public class RobotMap
 {
   public final static int DRIVER_CONTROLLER = 0;
 
-  public static double SCALEFACTOR = 0.5;
+  public static double SCALEFACTOR = 0.4;
 
   public final static int FRONT_LEFT_MOTOR = 1;
   public final static int REAR_LEFT_MOTOR = 2;
