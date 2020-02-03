@@ -7,42 +7,73 @@
 
 package frc.robot.subsystems;
 
+import java.util.Vector;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.networktables.NetworkTableInstance;
+import frc.robot.commands.Targeting;
+
 
 /**
  * Add your docs here.
  */
 public class Camera extends Subsystem 
 {
-  NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
-  NetworkTableEntry tx = table.getEntry("tx");
-  NetworkTableEntry ty = table.getEntry("ty");
-  NetworkTableEntry ta = table.getEntry("ta");
-
-  //read values periodically
-  double x = tx.getDouble(0.0);
-  double y = ty.getDouble(0.0);
-  double area = ta.getDouble(0.0);
-
-
+  Double Px,Py,Parea,dist;
+  int stacking = 0;
+  double distavg;
+  double Yavg;
+  double yfinal;
+  double distfinal;
   @Override
   public void initDefaultCommand() 
   {
     // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
+    setDefaultCommand(new Targeting());
   }
+  public void getPositon(Double x, Double y, Double area)
+  {
+    Px = x;
+    Py = y;
+    Parea = area;
+    /*
+    double h1 = 12;
+    double h2 = 91;
+    double a1 = Math.toRadians(25.0716073848);
+    double a2 = Math.toRadians(Py);
+    double hight = (h2-h1);
+    double angle = Math.tan(a1+a2);
+    dist = hight/angle;
+    distavg = distavg + dist;
+    //Yavg = Yavg + Py;
+    if(stacking >= 1000)
+    {
+      distfinal = distavg/1000;
+      yfinal = Yavg/1000;
+      distavg = 0;
+      Yavg = y;
+      stacking = 0;
+      System.out.println(" dist " + String.format("%.3f",distfinal));
+      System.out.println(" Y: " + String.format("%.7f",Py));
+    }
+    stacking++;
+    */
 
+  }
+  public Double getX()
+  {
+    return Px;
+  }
+  public double getY()
+  {
+    return Py;
+  }
   public void print()
   {
-    
-      System.out.print("X: " + x);
-      System.out.print(" Y: " + y);
-      System.out.println(" area: " + area);
-   
+
+      //System.out.print("X: " + String.format("%.3f",Px));
+      //System.out.println(" Y: " + String.format("%.7f",Py));
+      //System.out.println(" area: " + String.format("%.3f",Parea));
+      //System.out.println(" dist " + String.format("%.3f",distfinal));
 
   }
 }

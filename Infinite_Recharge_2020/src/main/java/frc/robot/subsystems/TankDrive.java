@@ -41,6 +41,7 @@ public class TankDrive extends Subsystem
     // Set the default command for a subsystem here.
     setDefaultCommand(new Drive());
   }
+  /*
   public void setdrivevector(Vector<Double> axis)
   {
     double axisX = (double) axis.elementAt(0);
@@ -48,9 +49,6 @@ public class TankDrive extends Subsystem
 
     double leftPWR = 0;
     double rightPWR = 0;
-   
-
-    
 
     if(axisY <= 0.0)
     {
@@ -79,11 +77,15 @@ public class TankDrive extends Subsystem
       }
     }
   
-
     LFactor = leftPWR * RobotMap.SCALEFACTOR; 
     RFactor = rightPWR  * RobotMap.SCALEFACTOR;
 
     Drivetrain.tankDrive(-LFactor, -RFactor, false);
+  }
+  */
+  public void directpwrfeed(double L, double R)
+  {
+    Drivetrain.tankDrive(-L, -R, false);
   }
 
   public String print()
