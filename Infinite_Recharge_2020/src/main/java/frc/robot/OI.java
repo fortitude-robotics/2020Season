@@ -12,6 +12,7 @@ import java.util.Vector;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.Fire;
 import frc.robot.commands.Lockon;
 
 
@@ -22,7 +23,10 @@ import frc.robot.commands.Lockon;
 public class OI 
 {
   Joystick F310 = new Joystick(RobotMap.DRIVER_CONTROLLER);
-   private Button buttonA = new JoystickButton(F310,2);
+   private Button buttonX = new JoystickButton(F310,0);
+   private Button buttonA = new JoystickButton(F310,1);
+   private Button buttonB = new JoystickButton(F310,2);
+   private Button buttonY = new JoystickButton(F310,3);
   
   public Vector<Double> GetControllerRawAxis()
   {
@@ -35,5 +39,7 @@ public class OI
   public void OI()
   {
     buttonA.whileHeld(new Lockon());
+    buttonB.whenPressed(new Fire());
+    
   }
 }

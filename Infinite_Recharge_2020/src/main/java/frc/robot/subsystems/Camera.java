@@ -6,9 +6,7 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.subsystems;
-
-import java.util.Vector;
-
+//import java.util.Vector;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.commands.Targeting;
 
@@ -35,7 +33,6 @@ public class Camera extends Subsystem
     Px = x;
     Py = y;
     Parea = area;
-    /*
     double h1 = 12;
     double h2 = 91;
     double a1 = Math.toRadians(25.0716073848);
@@ -43,6 +40,7 @@ public class Camera extends Subsystem
     double hight = (h2-h1);
     double angle = Math.tan(a1+a2);
     dist = hight/angle;
+    /*
     distavg = distavg + dist;
     //Yavg = Yavg + Py;
     if(stacking >= 1000)

@@ -13,9 +13,9 @@ import frc.robot.RobotMap;
 import frc.robot.commands.Drive;
 import edu.wpi.first.wpilibj.drive.*;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpiutil.math.MathUtil;
+//import edu.wpi.first.wpiutil.math.MathUtil;
 
-import java.util.Vector;
+//import java.util.Vector;
 
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
@@ -41,53 +41,19 @@ public class TankDrive extends Subsystem
     // Set the default command for a subsystem here.
     setDefaultCommand(new Drive());
   }
-  /*
-  public void setdrivevector(Vector<Double> axis)
-  {
-    double axisX = (double) axis.elementAt(0);
-    double axisY = (double) axis.elementAt(1);
 
-    double leftPWR = 0;
-    double rightPWR = 0;
-
-    if(axisY <= 0.0)
-    {
-      if(axisX > 0.0)
-      {
-        leftPWR = Math.copySign(Math.sqrt(Math.pow(axisY, 2) + Math.pow(axisX, 2)),axisX);
-        rightPWR = Math.copySign(Math.sqrt(Math.abs(Math.pow(axisY, 2) - Math.pow(axisX, 2))),(Math.abs(axisY)-axisX));
-      }
-      else
-      {
-        leftPWR = Math.copySign(Math.sqrt(Math.pow(axisY, 2) + Math.pow(axisX, 2)),Math.abs(axisY)-Math.abs(axisX));
-        rightPWR = Math.sqrt(Math.pow(axisY, 2) + Math.pow(Math.abs(axisX),2));
-      }
-    }
-    else
-    {
-      if(axisX >= 0.0)
-      {
-        leftPWR = Math.copySign(Math.sqrt(Math.pow(Math.abs(axisY),2) + Math.pow(axisX, 2)),axisX-axisY);
-        rightPWR = Math.copySign(Math.sqrt(Math.pow(Math.abs(axisY),2) + Math.pow(axisX, 2)),-1);
-      }
-      else
-      {
-        leftPWR = Math.copySign(Math.sqrt(Math.pow(Math.abs(axisY),2) + Math.pow(axisX, 2)),axisX);
-        rightPWR = Math.copySign(Math.sqrt(Math.pow(Math.abs(axisY),2) - Math.pow(axisX, 2)),(Math.abs(axisY)-axisX));
-      }
-    }
-  
-    LFactor = leftPWR * RobotMap.SCALEFACTOR; 
-    RFactor = rightPWR  * RobotMap.SCALEFACTOR;
-
-    Drivetrain.tankDrive(-LFactor, -RFactor, false);
-  }
-  */
   public void directpwrfeed(double L, double R)
   {
     Drivetrain.tankDrive(-L, -R, false);
   }
 
+  public void setfollow()
+  {
+    leftRearMotor.follow(leftFrontMotor);
+    rightRearMotor.follow(rightFrontMotor);
+  }
+
+  //for debugging ======================================================================
   public String print()
   {
     int cpr2 = 0;
@@ -107,9 +73,4 @@ public class TankDrive extends Subsystem
     return encVal;
   }
 
-  public void setfollow()
-  {
-    leftRearMotor.follow(leftFrontMotor);
-    rightRearMotor.follow(rightFrontMotor);
-  }
 }

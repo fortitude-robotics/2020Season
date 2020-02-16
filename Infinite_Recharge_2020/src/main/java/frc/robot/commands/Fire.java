@@ -6,77 +6,44 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.commands;
-//import javax.lang.model.util.ElementScanner6;
+
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class Lockon extends Command 
+public class Fire extends Command 
 {
-  double x,y,leftpwr,rightpwr;
-  double Scale = 20;
-  public Lockon() {
+  
+
+  public Fire() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.limelight2);
-    requires(Robot.drivetrain);
+    requires(Robot.shooter);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() 
   {
-     
+    
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() 
   {
-    x = Robot.limelight2.getX();
-    y = Robot.limelight2.getY();
-    if( x > 0.8 || x < -0.8 )
+    if(Robot.shooter.getSpeed() == 0)
     {
-      if(x > -0.8)
-      {
-        leftpwr = 0.08;
-        rightpwr =  -0.08;
-        Robot.drivetrain.directpwrfeed(leftpwr, rightpwr);
-      }
-      if (x < 0.8)
-      {
-        leftpwr = -0.08;
-        rightpwr =  0.08;
-        Robot.drivetrain.directpwrfeed(leftpwr, rightpwr);
-      }
+      Robot.shooter.SetPower(-1.0);
     }
-    else if( y > 0.8 || y < -0.8)
-    {
-      if(y > -0.8)
-      {
-        leftpwr = -0.1;
-        rightpwr =  -0.1;
-        Robot.drivetrain.directpwrfeed(leftpwr, rightpwr);
-      }
-      if (y < 0.8)
-      {
-        leftpwr = 0.1;
-        rightpwr =  0.1;
-        Robot.drivetrain.directpwrfeed(leftpwr, rightpwr);
-      }
+    else{
+      Robot.shooter.SetPower(0.0);
     }
-    else
-    {
-      Robot.drivetrain.directpwrfeed(0,0);
-    }
-
+    
   }
-  
-
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
-  protected boolean isFinished() 
-  {
-    return false;
+  protected boolean isFinished() {
+    return true;
   }
 
   // Called once after isFinished returns true

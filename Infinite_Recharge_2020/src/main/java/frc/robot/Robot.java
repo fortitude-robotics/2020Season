@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.Camera;
+import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.TankDrive;
 
 /**
@@ -26,6 +27,7 @@ public class Robot extends TimedRobot {
   public static OI m_oi;
   public static TankDrive drivetrain = new TankDrive();
   public static Camera limelight2 = new Camera();
+  public static Shooter shooter = new Shooter();
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -37,9 +39,9 @@ public class Robot extends TimedRobot {
   public void robotInit() 
   {
     m_oi = new OI();
-    // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
     drivetrain.setfollow();
+    shooter.setfollow();
   }
 
   /**
@@ -125,6 +127,7 @@ public class Robot extends TimedRobot {
   {
     Scheduler.getInstance().run();
     m_oi.OI();
+    shooter.print();
   }
 
   /**
