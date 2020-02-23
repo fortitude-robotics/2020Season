@@ -29,13 +29,11 @@ public class RobotMap
   {6000,5700,5400,5100,4800,4500,4200,3900,3600,3300,3000}};
   //motion magic constants
   public final static int timeout = 30;
-  public final static Double kP = 0.0;
+  public final static Double kP = 2.0;
   public final static Double kI = 0.0;
   public final static Double kD = 0.0;
   public final static Double kF = 0.0;
   public final static int kIzone = 0;
   public final static Double kPeakOutput = 1.0;
   public final static Double Deadband = 0.001;
-
-
 }

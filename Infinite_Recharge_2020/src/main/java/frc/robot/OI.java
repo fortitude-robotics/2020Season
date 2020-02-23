@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.Fire;
+import frc.robot.commands.Intake;
 import frc.robot.commands.Lockon;
 
 
@@ -40,6 +41,7 @@ public class OI
   {
     buttonA.whileHeld(new Lockon());
     buttonB.whenPressed(new Fire());
+    buttonX.whenPressed(new Intake());
     
   }
 }

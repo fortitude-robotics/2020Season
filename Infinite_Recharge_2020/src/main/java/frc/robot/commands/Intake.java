@@ -10,20 +10,15 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class Fire extends Command 
-{
-  
-
-  public Fire() {
+public class Intake extends Command {
+  public Intake() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.shooter);
   }
 
   // Called just before this Command runs the first time
   @Override
-  protected void initialize() 
-  {
-    
+  protected void initialize() {
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -37,7 +32,6 @@ public class Fire extends Command
     else{
       Robot.shooter.SetShooterPower(0.0);
     }
-    
   }
 
   // Make this return true when this Command no longer needs to run execute()

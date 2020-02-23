@@ -34,13 +34,21 @@ public class Shooter extends Subsystem
   //conveyer
   private final TalonSRX lowerConv = new TalonSRX(9);
   private final TalonSRX uppperConv = new TalonSRX(10);
-  private final TalonSRX loader = new TalonSRX(11); 
+  private final TalonSRX mainConv = new TalonSRX(11);
+  private final TalonSRX infeed = new TalonSRX(12); 
 
 
   public void setfollow()
   {
+    //follow controll
     shooterUpperA.follow(shooterUpperB);
     shooterLowerA.follow(shooterLowerB);
+    //ramp control
+    shooterUpperA.configOpenloopRamp(10);
+    shooterUpperB.configOpenloopRamp(10);
+    shooterLowerA.configOpenloopRamp(10);
+    shooterLowerB.configOpenloopRamp(10);
+    //pid pre-settings
     shooterUpperA.configClosedLoopPeriod(0, 1, RobotMap.timeout);
     shooterLowerA.configClosedLoopPeriod(0, 1, RobotMap.timeout);
     upper_cfg.primaryPID.selectedFeedbackSensor = FeedbackDevice.IntegratedSensor;
@@ -73,11 +81,29 @@ public class Shooter extends Subsystem
   {
     return shooterUpperA.getMotorOutputPercent();
   }
-  public void SetPower(double pwr)
+  public double 
+  //set functions
+  public void SetShooterPower(double pwr)
   {
     shooterUpperA.set(TalonFXControlMode.PercentOutput, pwr);
     shooterLowerA.set(TalonFXControlMode.PercentOutput, pwr);
     
+  }
+  public void SetIntakePower(double pwr)
+  {
+
+  }
+  public void SetLoaderPower(double pwr)
+  {
+
+  }
+  public void SetUpperPower(double pwr)
+  {
+
+  }
+  public void SetLowerPower(double pwr)
+  {
+
   }
   @Override
   public void initDefaultCommand() 
