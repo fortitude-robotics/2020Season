@@ -81,7 +81,10 @@ public class Shooter extends Subsystem
   {
     return shooterUpperA.getMotorOutputPercent();
   }
-  public double 
+  public double getconv()
+  {
+    return mainConv.getMotorOutputPercent();
+  }
   //set functions
   public void SetShooterPower(double pwr)
   {
@@ -93,9 +96,9 @@ public class Shooter extends Subsystem
   {
 
   }
-  public void SetLoaderPower(double pwr)
+  public void SetMainPower(double pwr)
   {
-
+    mainConv.set(TalonSRXControlMode.PercentOutput,pwr);
   }
   public void SetUpperPower(double pwr)
   {

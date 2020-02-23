@@ -25,12 +25,12 @@ public class Intake extends Command {
   @Override
   protected void execute() 
   {
-    if(Robot.shooter.getSpeed() == 0)
+    if(Robot.shooter.getconv() == 0)
     {
-      Robot.shooter.SetShooterPower(-1.0);
+      Robot.shooter.SetMainPower(0.1);
     }
     else{
-      Robot.shooter.SetShooterPower(0.0);
+      Robot.shooter.SetMainPower(0.0);
     }
   }
 
