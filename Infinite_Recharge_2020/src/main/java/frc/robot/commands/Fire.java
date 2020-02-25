@@ -32,7 +32,7 @@ public class Fire extends Command
   {
     if(Robot.shooter.getSpeed() == 0)
     {
-      Robot.shooter.SetShooterPower(-1.0);
+      Robot.shooter.SetShooterPower(-0.8);
     }
     else{
       Robot.shooter.SetShooterPower(0.0);

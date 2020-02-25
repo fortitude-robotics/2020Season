@@ -36,21 +36,23 @@ public class Shooter extends Subsystem
   private final TalonSRX uppperConv = new TalonSRX(10);
   private final TalonSRX mainConv = new TalonSRX(11);
   private final TalonSRX infeed = new TalonSRX(12); 
+  //testing
+  int n = 0;
 
 
   public void setfollow()
   {
     //follow controll
-    shooterUpperA.follow(shooterUpperB);
-    shooterLowerA.follow(shooterLowerB);
+    //shooterUpperA.follow(shooterUpperB);
+    //shooterLowerA.follow(shooterLowerB);
     //ramp control
-    shooterUpperA.configOpenloopRamp(10);
-    shooterUpperB.configOpenloopRamp(10);
-    shooterLowerA.configOpenloopRamp(10);
-    shooterLowerB.configOpenloopRamp(10);
+    shooterUpperA.configOpenloopRamp(5);
+    shooterUpperB.configOpenloopRamp(5);
+    shooterLowerA.configOpenloopRamp(5);
+    shooterLowerB.configOpenloopRamp(5);
     //pid pre-settings
-    shooterUpperA.configClosedLoopPeriod(0, 1, RobotMap.timeout);
-    shooterLowerA.configClosedLoopPeriod(0, 1, RobotMap.timeout);
+    //shooterUpperA.configClosedLoopPeriod(0, 1, RobotMap.timeout);
+    //shooterLowerA.configClosedLoopPeriod(0, 1, RobotMap.timeout);
     upper_cfg.primaryPID.selectedFeedbackSensor = FeedbackDevice.IntegratedSensor;
     lower_cfg.primaryPID.selectedFeedbackSensor = FeedbackDevice.IntegratedSensor;
     //upper
@@ -74,8 +76,8 @@ public class Shooter extends Subsystem
     lower_cfg.motionAcceleration = 2000;
     lower_cfg.motionCruiseVelocity = 2000;
     //apply
-    shooterUpperA.configAllSettings(upper_cfg);
-    shooterLowerA.configAllSettings(lower_cfg);
+    //shooterUpperA.configAllSettings(upper_cfg);
+    //shooterLowerA.configAllSettings(lower_cfg);
   }
   public double getSpeed()
   {
@@ -83,18 +85,20 @@ public class Shooter extends Subsystem
   }
   public double getconv()
   {
-    return mainConv.getMotorOutputPercent();
+    return lowerConv.getMotorOutputPercent();
   }
   //set functions
   public void SetShooterPower(double pwr)
   {
     shooterUpperA.set(TalonFXControlMode.PercentOutput, pwr);
     shooterLowerA.set(TalonFXControlMode.PercentOutput, pwr);
+    shooterUpperB.set(TalonFXControlMode.PercentOutput, pwr);
+    shooterLowerB.set(TalonFXControlMode.PercentOutput, pwr);
     
   }
   public void SetIntakePower(double pwr)
   {
-
+    infeed.set(TalonSRXControlMode.PercentOutput,pwr);
   }
   public void SetMainPower(double pwr)
   {
@@ -102,11 +106,11 @@ public class Shooter extends Subsystem
   }
   public void SetUpperPower(double pwr)
   {
-
+    uppperConv.set(TalonSRXControlMode.PercentOutput,pwr);
   }
   public void SetLowerPower(double pwr)
   {
-
+    lowerConv.set(TalonSRXControlMode.PercentOutput,pwr);
   }
   @Override
   public void initDefaultCommand() 
@@ -118,8 +122,17 @@ public class Shooter extends Subsystem
   //for debugging ======================================================================
   public void print()
   {
-    System.out.println("upper vel = " + shooterUpperA.getSelectedSensorVelocity());
-    System.out.println("lower vel = " + shooterLowerA.getSelectedSensorVelocity());
+    /*
+    if(n == 100)
+    {
+    System.out.println("upper vel = " + shooterUpperA.getMotorOutputVoltage());
+    System.out.println("lower vel = " + shooterLowerA.getMotorOutputVoltage());
+    System.out.println("upper vel = " + shooterUpperB.getMotorOutputVoltage());
+    System.out.println("lower vel = " + shooterLowerB.getMotorOutputVoltage());
+    n = 0;
+    }
+    n++;
+    */
   }
 
 }

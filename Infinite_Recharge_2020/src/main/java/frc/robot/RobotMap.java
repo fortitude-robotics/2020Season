@@ -36,4 +36,12 @@ public class RobotMap
   public final static int kIzone = 0;
   public final static Double kPeakOutput = 1.0;
   public final static Double Deadband = 0.001;
+  //button ID mapping
+  public final static int BUTTON_X = 1;
+  public final static int BUTTON_A = 2;
+  public final static int BUTTON_B = 3;
+  public final static int BUTTON_Y = 4;
+  public final static int BUTTON_LBUMP = 5;
+  public final static int BUTTON_LTRIG = 7;
+  
 }

@@ -9,9 +9,14 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
 
-public class Intake extends Command {
-  public Intake() {
+public class Intake extends Command 
+{
+  int buttonID;
+  public Intake(int btnID) 
+  {
+    buttonID = btnID;
     // Use requires() here to declare subsystem dependencies
     requires(Robot.shooter);
   }
@@ -27,13 +32,27 @@ public class Intake extends Command {
   {
     if(Robot.shooter.getconv() == 0)
     {
-      Robot.shooter.SetMainPower(0.1);
+      if(buttonID == RobotMap.BUTTON_LBUMP)
+      {
+      Robot.shooter.SetLowerPower(0.3);
+      Robot.shooter.SetIntakePower(-0.3);
+      Robot.shooter.SetUpperPower(0.3);
+      }
+      if(buttonID == RobotMap.BUTTON_LTRIG)
+      {
+      Robot.shooter.SetLowerPower(-0.3);
+      Robot.shooter.SetIntakePower(0.3);
+      Robot.shooter.SetUpperPower(-0.3);
+      }
+      
     }
-    else{
-      Robot.shooter.SetMainPower(0.0);
+    else
+    {
+      Robot.shooter.SetLowerPower(0.0);
+      Robot.shooter.SetIntakePower(0.0);
+      Robot.shooter.SetUpperPower(0.0);
     }
   }
-
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {

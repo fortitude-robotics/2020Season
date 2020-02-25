@@ -24,10 +24,12 @@ import frc.robot.commands.Lockon;
 public class OI 
 {
   Joystick F310 = new Joystick(RobotMap.DRIVER_CONTROLLER);
-   private Button buttonX = new JoystickButton(F310,0);
-   private Button buttonA = new JoystickButton(F310,1);
-   private Button buttonB = new JoystickButton(F310,2);
-   private Button buttonY = new JoystickButton(F310,3);
+   private Button buttonX = new JoystickButton(F310,RobotMap.BUTTON_X);
+   private Button buttonA = new JoystickButton(F310,RobotMap.BUTTON_A);
+   private Button buttonB = new JoystickButton(F310,RobotMap.BUTTON_B);
+   private Button buttonY = new JoystickButton(F310,RobotMap.BUTTON_Y);
+   private Button Lbump= new JoystickButton(F310,RobotMap.BUTTON_LBUMP);
+   private Button Ltrig = new JoystickButton(F310,RobotMap.BUTTON_LTRIG);
   
   public Vector<Double> GetControllerRawAxis()
   {
@@ -41,7 +43,8 @@ public class OI
   {
     buttonA.whileHeld(new Lockon());
     buttonB.whenPressed(new Fire());
-    buttonX.whenPressed(new Intake());
+    Lbump.whenPressed(new Intake(RobotMap.BUTTON_LBUMP));
+    Ltrig.whenPressed(new Intake(RobotMap.BUTTON_LTRIG));
     
   }
 }
