@@ -10,6 +10,10 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.commands.Targeting;
 
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
+
 
 /**
  * Add your docs here.
@@ -73,5 +77,13 @@ public class Camera extends Subsystem
       //System.out.println(" area: " + String.format("%.3f",Parea));
       //System.out.println(" dist " + String.format("%.3f",distfinal));
 
+  }
+  public void lightsoff()
+  {
+    NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(1);
+  }
+  public void lightson()
+  {
+    NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
   }
 }

@@ -7,6 +7,8 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
@@ -24,18 +26,20 @@ import com.ctre.phoenix.motorcontrol.can.*;
 public class Shooter extends Subsystem 
 { 
   //launcher
-  private final TalonFX shooterUpperA = new TalonFX(5);
-  private final TalonFX shooterUpperB = new TalonFX(6);
-  private final TalonFX shooterLowerA = new TalonFX(7);
-  private final TalonFX shooterLowerB = new TalonFX(8);
+  private final TalonFX shooterUpperA = new TalonFX(RobotMap.SHOOTER_UPPER_A);
+  private final TalonFX shooterUpperB = new TalonFX(RobotMap.SHOOTER_UPPER_B);
+  private final TalonFX shooterLowerA = new TalonFX(RobotMap.SHOOTER_LOWER_A);
+  private final TalonFX shooterLowerB = new TalonFX(RobotMap.SHOOTER_LOWER_B);
   //TalonFX config
   TalonFXConfiguration upper_cfg = new TalonFXConfiguration();
   TalonFXConfiguration lower_cfg = new TalonFXConfiguration();
   //conveyer
-  private final TalonSRX lowerConv = new TalonSRX(9);
-  private final TalonSRX uppperConv = new TalonSRX(10);
-  private final TalonSRX mainConv = new TalonSRX(11);
-  private final TalonSRX infeed = new TalonSRX(12); 
+  private final TalonSRX lowerConv = new TalonSRX(RobotMap.LOWERCONV);
+  private final TalonSRX uppperConv = new TalonSRX(RobotMap.UPPERCONV);
+  private final TalonSRX mainConv = new TalonSRX(RobotMap.MAINCONV);
+  private final TalonSRX infeed = new TalonSRX(RobotMap.INFEED); 
+  //infeed pneumatics
+  private final Solenoid intake_lower = new Solenoid(RobotMap.INTAKE_LOWER);
   //testing
   int n = 0;
 
@@ -63,8 +67,6 @@ public class Shooter extends Subsystem
     upper_cfg.slot0.integralZone = RobotMap.kIzone;
     upper_cfg.slot0.closedLoopPeakOutput = RobotMap.kPeakOutput;
     upper_cfg.neutralDeadband = RobotMap.Deadband;
-    upper_cfg.motionAcceleration = 2000;
-    upper_cfg.motionCruiseVelocity = 2000;
     //lower
     lower_cfg.slot0.kF = RobotMap.kF;
     lower_cfg.slot0.kP = RobotMap.kP;
@@ -73,8 +75,6 @@ public class Shooter extends Subsystem
     lower_cfg.slot0.integralZone = RobotMap.kIzone;
     lower_cfg.slot0.closedLoopPeakOutput = RobotMap.kPeakOutput;
     lower_cfg.neutralDeadband = RobotMap.Deadband;
-    lower_cfg.motionAcceleration = 2000;
-    lower_cfg.motionCruiseVelocity = 2000;
     //apply
     //shooterUpperA.configAllSettings(upper_cfg);
     //shooterLowerA.configAllSettings(lower_cfg);
@@ -96,6 +96,16 @@ public class Shooter extends Subsystem
     shooterLowerB.set(TalonFXControlMode.PercentOutput, pwr);
     
   }
+  //solinoid control
+  public void intake_drop(boolean val)
+  {
+    intake_lower.set(val);
+  }
+  public boolean getsol()
+  {
+     return intake_lower.get();
+  }
+  //set for conv
   public void SetIntakePower(double pwr)
   {
     infeed.set(TalonSRXControlMode.PercentOutput,pwr);
@@ -134,5 +144,4 @@ public class Shooter extends Subsystem
     n++;
     */
   }
-
 }

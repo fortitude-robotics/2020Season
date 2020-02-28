@@ -17,12 +17,22 @@ public class RobotMap
 {
   public final static int DRIVER_CONTROLLER = 0;
 
-  public static double SCALEFACTOR = 0.4;
-
+  public static double SCALEFACTOR = 0.8;
+  //Drive motors 
   public final static int FRONT_LEFT_MOTOR = 1;
   public final static int REAR_LEFT_MOTOR = 2;
   public final static int FRONT_RIGHT_MOTOR = 3;
   public final static int REAR_RIGHT_MOTOR = 4;
+  //Shooter motors
+  public final static int SHOOTER_UPPER_A = 5;
+  public final static int SHOOTER_UPPER_B = 6;
+  public final static int SHOOTER_LOWER_A = 7;
+  public final static int SHOOTER_LOWER_B = 8;
+  //conveyer motors
+  public final static int LOWERCONV = 9;
+  public final static int MAINCONV = 11;
+  public final static int UPPERCONV = 10;
+  public final static int INFEED = 12;
   //rpm table
   public final static double[][] SHOOTER_RPM = 
   {{240,228,216,204,192,180,168,156,144,132,120},
@@ -37,11 +47,12 @@ public class RobotMap
   public final static Double kPeakOutput = 1.0;
   public final static Double Deadband = 0.001;
   //button ID mapping
-  public final static int BUTTON_X = 1;
-  public final static int BUTTON_A = 2;
-  public final static int BUTTON_B = 3;
+  public final static int BUTTON_X = 3;
+  public final static int BUTTON_A = 1;
+  public final static int BUTTON_B = 2;
   public final static int BUTTON_Y = 4;
   public final static int BUTTON_LBUMP = 5;
-  public final static int BUTTON_LTRIG = 7;
-  
+  public final static int BUTTON_RBUMP = 6;
+  //pneumatics
+  public final static int INTAKE_LOWER = 0;
 }

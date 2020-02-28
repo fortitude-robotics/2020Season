@@ -52,6 +52,14 @@ public class TankDrive extends Subsystem
     leftRearMotor.follow(leftFrontMotor);
     rightRearMotor.follow(rightFrontMotor);
   }
+  public void Forward()
+  {
+    Drivetrain.tankDrive(-0.2, -0.2, false);
+  }
+  public void Stop()
+  {
+    Drivetrain.tankDrive(0, 0, false);
+  }
 
   //for debugging ======================================================================
   public String print()

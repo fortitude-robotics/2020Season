@@ -42,6 +42,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Auto mode", m_chooser);
     drivetrain.setfollow();
     shooter.setfollow();
+    limelight2.lightsoff();
   }
 
   /**
@@ -64,7 +65,9 @@ public class Robot extends TimedRobot {
    * the robot is disabled.
    */
   @Override
-  public void disabledInit() {
+  public void disabledInit() 
+  {
+    limelight2.lightsoff();
   }
 
   @Override
@@ -98,13 +101,15 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.start();
     }
+    limelight2.lightson();
   }
 
   /**
    * This function is called periodically during autonomous.
    */
   @Override
-  public void autonomousPeriodic() {
+  public void autonomousPeriodic() 
+  {
     Scheduler.getInstance().run();
   }
 
@@ -117,6 +122,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    limelight2.lightson();
   }
 
   /**

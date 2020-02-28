@@ -9,16 +9,11 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.RobotMap;
 
-public class Intake extends Command 
-{
-  int buttonID = 0;
-  public Intake(int btnID) 
-  {
-    buttonID = btnID;
+public class Testing extends Command {
+  public Testing() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.shooter);
+    // eg. requires(chassis);
   }
 
   // Called just before this Command runs the first time
@@ -30,41 +25,19 @@ public class Intake extends Command
   @Override
   protected void execute() 
   {
-    
-    if(Robot.shooter.getconv() == 0)
+    if (Robot.shooter.getsol())
     {
-      if(buttonID == RobotMap.BUTTON_RBUMP)
-      {
-      Robot.shooter.SetLowerPower(0.3);
-      Robot.shooter.SetIntakePower(-0.3);
-      }
-      if(buttonID == RobotMap.BUTTON_LBUMP)
-      {
-      Robot.shooter.SetLowerPower(-0.3);
-      Robot.shooter.SetIntakePower(0.3);
-      }
-      if(buttonID == RobotMap.BUTTON_B)
-      {
-      Robot.shooter.SetMainPower(0.5);
-      Robot.shooter.SetLowerPower(0.3);
-      Robot.shooter.SetUpperPower(0.3);
-      }
-      
+      Robot.shooter.intake_drop(false);
     }
     else
     {
-      Robot.shooter.SetLowerPower(0.0);
-      Robot.shooter.SetIntakePower(0.0);
-      Robot.shooter.SetUpperPower(0.0);
-      Robot.shooter.SetMainPower(0.0);
-     
+      Robot.shooter.intake_drop(true);
     }
-    
   }
+
   // Make this return true when this Command no longer needs to run execute()
   @Override
-  protected boolean isFinished() 
-  {
+  protected boolean isFinished() {
     return true;
   }
 
