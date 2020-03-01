@@ -47,8 +47,8 @@ public class Shooter extends Subsystem
   public void setfollow()
   {
     //follow controll
-    //shooterUpperA.follow(shooterUpperB);
-    //shooterLowerA.follow(shooterLowerB);
+    //shooterUpperB.follow(shooterUpperA);
+    //shooterLowerB.follow(shooterLowerA);
     //ramp control
     shooterUpperA.configOpenloopRamp(5);
     shooterUpperB.configOpenloopRamp(5);
