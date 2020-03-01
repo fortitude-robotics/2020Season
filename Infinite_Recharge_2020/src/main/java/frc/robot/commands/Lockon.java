@@ -33,15 +33,17 @@ public class Lockon extends Command
   {
     x = Robot.limelight2.getX();
     y = Robot.limelight2.getY();
+    System.out.println("val x = " + x);
+    System.out.println("val y = " + y);
     if( x > 0.8 || x < -0.8 )
     {
-      if(x > -0.8)
+      if(x > 0.8)
       {
         leftpwr = 0.08;
         rightpwr =  -0.08;
         Robot.drivetrain.directpwrfeed(leftpwr, rightpwr);
       }
-      if (x < 0.8)
+      if (x < -0.8)
       {
         leftpwr = -0.08;
         rightpwr =  0.08;
@@ -50,13 +52,13 @@ public class Lockon extends Command
     }
     else if( y > 0.8 || y < -0.8)
     {
-      if(y > -0.8)
+      if(y > 0.8)
       {
         leftpwr = -0.1;
         rightpwr =  -0.1;
         Robot.drivetrain.directpwrfeed(leftpwr, rightpwr);
       }
-      if (y < 0.8)
+      if (y < -0.8)
       {
         leftpwr = 0.1;
         rightpwr =  0.1;

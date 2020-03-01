@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -47,13 +48,27 @@ public class Shooter extends Subsystem
   public void setfollow()
   {
     //follow controll
-    //shooterUpperB.follow(shooterUpperA);
-    //shooterLowerB.follow(shooterLowerA);
+    shooterUpperB.follow(shooterUpperA);
+    shooterLowerB.follow(shooterLowerA);
     //ramp control
-    shooterUpperA.configOpenloopRamp(5);
-    shooterUpperB.configOpenloopRamp(5);
-    shooterLowerA.configOpenloopRamp(5);
-    shooterLowerB.configOpenloopRamp(5);
+    shooterUpperA.configOpenloopRamp(2);
+    shooterUpperB.configOpenloopRamp(2);
+    shooterLowerA.configOpenloopRamp(2);
+    shooterLowerB.configOpenloopRamp(2);
+
+    //voltage comp
+    /*
+    shooterUpperA.enableVoltageCompensation(true);
+    shooterLowerA.enableVoltageCompensation(true);
+    shooterUpperB.enableVoltageCompensation(true);
+    shooterLowerB.enableVoltageCompensation(true);
+    
+    shooterUpperA.configVoltageCompSaturation(11);
+    shooterLowerA.configVoltageCompSaturation(11);
+    shooterUpperB.configVoltageCompSaturation(11);
+    shooterLowerB.configVoltageCompSaturation(11);
+    */
+
     //pid pre-settings
     //shooterUpperA.configClosedLoopPeriod(0, 1, RobotMap.timeout);
     //shooterLowerA.configClosedLoopPeriod(0, 1, RobotMap.timeout);
@@ -91,9 +106,7 @@ public class Shooter extends Subsystem
   public void SetShooterPower(double pwr)
   {
     shooterUpperA.set(TalonFXControlMode.PercentOutput, pwr);
-    shooterLowerA.set(TalonFXControlMode.PercentOutput, pwr);
-    shooterUpperB.set(TalonFXControlMode.PercentOutput, pwr);
-    shooterLowerB.set(TalonFXControlMode.PercentOutput, pwr);
+    shooterLowerA.set(TalonFXControlMode.PercentOutput, pwr/2);
     
   }
   //solinoid control
@@ -132,16 +145,11 @@ public class Shooter extends Subsystem
   //for debugging ======================================================================
   public void print()
   {
-    /*
-    if(n == 100)
-    {
-    System.out.println("upper vel = " + shooterUpperA.getMotorOutputVoltage());
-    System.out.println("lower vel = " + shooterLowerA.getMotorOutputVoltage());
-    System.out.println("upper vel = " + shooterUpperB.getMotorOutputVoltage());
-    System.out.println("lower vel = " + shooterLowerB.getMotorOutputVoltage());
-    n = 0;
-    }
-    n++;
-    */
+    SmartDashboard.putNumber("TicksU", -shooterUpperA.getSelectedSensorVelocity());
+    SmartDashboard.putNumber("TicksL", -shooterLowerA.getSelectedSensorVelocity());
+    SmartDashboard.putNumber("VoltageU", -shooterUpperA.getMotorOutputVoltage());
+    SmartDashboard.putNumber("VoltageL", -shooterLowerA.getMotorOutputVoltage());
+    SmartDashboard.putNumber("PercentU", -shooterUpperA.getMotorOutputPercent());
+    SmartDashboard.putNumber("PercentL", -shooterLowerA.getMotorOutputPercent());
   }
 }
