@@ -20,7 +20,7 @@ public class RobotMap
   public static double SCALEFACTOR = 0.8;
 
   // Falcon 500 encoder
-  public static int FALCON_CPR = 2948;  // Falcon 500 encoder Counts per Revolution
+  public final static int FALCON_CPR = 2048;  // Falcon 500 encoder Counts per Revolution
   
   //CAN IDs
   //pneumatics

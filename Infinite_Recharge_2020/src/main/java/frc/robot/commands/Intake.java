@@ -7,6 +7,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
@@ -14,9 +15,12 @@ import frc.robot.RobotMap;
 public class Intake extends Command 
 {
   int buttonID = 0;
-  public Intake(int btnID) 
+  boolean btnstat;
+  boolean finish = false;
+  public Intake(int btnID, Boolean BtnStatus) 
   {
     buttonID = btnID;
+    btnstat = BtnStatus;
     // Use requires() here to declare subsystem dependencies
     requires(Robot.shooter);
   }
@@ -31,7 +35,7 @@ public class Intake extends Command
   protected void execute() 
   {
     
-    if(Robot.shooter.getconv() == 0)
+    if(!btnstat)
     {
       if(buttonID == RobotMap.BUTTON_RBUMP)
       {
@@ -57,7 +61,6 @@ public class Intake extends Command
       Robot.shooter.SetIntakePower(0.0);
       Robot.shooter.SetUpperPower(0.0);
       Robot.shooter.SetMainPower(0.0);
-     
     }
     
   }
@@ -65,7 +68,7 @@ public class Intake extends Command
   @Override
   protected boolean isFinished() 
   {
-    return true;
+    return finish;
   }
 
   // Called once after isFinished returns true

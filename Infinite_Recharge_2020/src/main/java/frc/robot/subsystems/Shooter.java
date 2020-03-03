@@ -17,6 +17,7 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.ctre.phoenix.motorcontrol.TalonSRXControlMode;
 import com.ctre.phoenix.motorcontrol.can.*;
+import com.playingwithfusion.TimeOfFlight;
 
 /**
  * FN-1. normal mode : sensor P0 turn on all till sensor P1 , then turn off upper conveyer. then at
@@ -41,6 +42,7 @@ public class Shooter extends Subsystem
   private final TalonSRX infeed = new TalonSRX(RobotMap.INFEED); 
   //infeed pneumatics
   private final Solenoid intake_lower = new Solenoid(RobotMap.INTAKE_LOWER);
+  private final TimeOfFlight tofS = new TimeOfFlight(0);
   //testing
   int n = 0;
 
@@ -135,6 +137,11 @@ public class Shooter extends Subsystem
   {
     lowerConv.set(TalonSRXControlMode.PercentOutput,pwr);
   }
+  public double GetTOFdistance()
+  {
+   SmartDashboard.putNumber("TOFS", tofS.getRange());
+    return tofS.getRange();
+  }
   @Override
   public void initDefaultCommand() 
   {
@@ -145,8 +152,13 @@ public class Shooter extends Subsystem
   //for debugging ======================================================================
   public void print()
   {
-    SmartDashboard.putNumber("TicksU", -shooterUpperA.getSelectedSensorVelocity());
-    SmartDashboard.putNumber("TicksL", -shooterLowerA.getSelectedSensorVelocity());
+    
+    int rpm_upper =  (-shooterUpperA.getSelectedSensorVelocity() * 10)/RobotMap.FALCON_CPR;
+    int rpm_lower =  (-shooterLowerA.getSelectedSensorVelocity() * 10)/RobotMap.FALCON_CPR;
+    rpm_upper = rpm_upper * 60;
+    rpm_lower = rpm_lower * 60;
+    SmartDashboard.putNumber("RPM Upper", rpm_upper);
+    SmartDashboard.putNumber("RPM lower", rpm_lower);
     SmartDashboard.putNumber("VoltageU", -shooterUpperA.getMotorOutputVoltage());
     SmartDashboard.putNumber("VoltageL", -shooterLowerA.getMotorOutputVoltage());
     SmartDashboard.putNumber("PercentU", -shooterUpperA.getMotorOutputPercent());

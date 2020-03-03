@@ -43,6 +43,7 @@ public class Robot extends TimedRobot {
     drivetrain.setfollow();
     shooter.setfollow();
     limelight2.lightsoff();
+    shooter.GetTOFdistance();
   }
 
   /**
@@ -58,6 +59,8 @@ public class Robot extends TimedRobot {
     drivetrain.print();
     limelight2.print();
     shooter.print();
+    limelight2.lightsoff();
+    shooter.GetTOFdistance();
   }
 
   /**
@@ -68,7 +71,7 @@ public class Robot extends TimedRobot {
   @Override
   public void disabledInit() 
   {
-    limelight2.lightsoff();
+    
   }
 
   @Override
@@ -102,7 +105,6 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.start();
     }
-    limelight2.lightson();
   }
 
   /**
@@ -123,7 +125,6 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-    limelight2.lightson();
   }
 
   /**
