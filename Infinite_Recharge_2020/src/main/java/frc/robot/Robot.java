@@ -45,10 +45,9 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Auto mode", m_chooser);
     drivetrain.setfollow();
     shooter.setfollow();
-    limelight2.lightsoff();
     shooter.GetTOFdistance();
     limelight2.SetPIP();
-    m_chooser.addOption("Instant start", AutoInstant);
+    m_chooser.addOption("1", AutoInstant);
   }
 
   /**
@@ -64,7 +63,6 @@ public class Robot extends TimedRobot {
     drivetrain.print();
     limelight2.print();
     shooter.print();
-    limelight2.lightsoff();
     shooter.GetTOFdistance();
   }
 

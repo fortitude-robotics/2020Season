@@ -18,6 +18,7 @@ import frc.robot.commands.FireV2;
 import frc.robot.commands.Intake;
 import frc.robot.commands.Lockon;
 import frc.robot.commands.Testing;
+import frc.robot.commands.camlight;
 
 
 /**
@@ -33,6 +34,7 @@ public class OI
    private Button buttonY = new JoystickButton(F310,RobotMap.BUTTON_Y);
    private Button Lbump= new JoystickButton(F310,RobotMap.BUTTON_LBUMP);
    private Button Rbump= new JoystickButton(F310,RobotMap.BUTTON_RBUMP);
+   private Button start = new JoystickButton(F310,RobotMap.BUTTON_START);
   
   public Vector<Double> GetControllerRawAxis()
   {
@@ -50,7 +52,7 @@ public class OI
     buttonB.whenPressed(new Intake(RobotMap.BUTTON_B));
     Rbump.whenPressed(new Intake(RobotMap.BUTTON_RBUMP));
     Lbump.whenPressed(new Intake(RobotMap.BUTTON_LBUMP));
-
+    start.whenPressed(new camlight());
     
   }
 }

@@ -17,7 +17,7 @@ public class RobotMap
 {
   public final static int DRIVER_CONTROLLER = 0;
 
-  public static double SCALEFACTOR = 0.8;
+  public static double SCALEFACTOR = 0.6;
 
   // Falcon 500 encoder
   public final static int FALCON_CPR = 2048;  // Falcon 500 encoder Counts per Revolution

@@ -22,6 +22,7 @@ public class FireV2 extends CommandGroup {
     // addSequential(new Command2());
     // these will run in order.
     addSequential(new Fire());
+    addSequential(new WaitCommand(2));
     addSequential(new Intake(RobotMap.BUTTON_B));
 
     // To run multiple commands at the same time,
