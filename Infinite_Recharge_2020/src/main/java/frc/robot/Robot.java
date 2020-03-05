@@ -30,8 +30,9 @@ public class Robot extends TimedRobot {
   public static Camera limelight2 = new Camera();
   public static Shooter shooter = new Shooter();
   Command m_autonomousCommand;
-  Command AutoInstant;
-  SendableChooser<Command> m_chooser = new SendableChooser<AutoInstant>();
+  Command AutoInstant = new AutoInstant();
+  SendableChooser<Command> m_chooser = new SendableChooser<>();
+  
 
   /**
    * This function is run when the robot is first started up and should be
@@ -47,6 +48,7 @@ public class Robot extends TimedRobot {
     limelight2.lightsoff();
     shooter.GetTOFdistance();
     limelight2.SetPIP();
+    m_chooser.addOption("Instant start", AutoInstant);
   }
 
   /**

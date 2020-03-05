@@ -8,10 +8,9 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
 
-public class AutoMove extends Command {
-  public AutoMove() {
+public class AutoShoot extends Command {
+  public AutoShoot() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -23,18 +22,13 @@ public class AutoMove extends Command {
 
   // Called repeatedly when this Command is scheduled to run
   @Override
-  protected void execute() 
-  {
-    Robot.drivetrain.Forward();
-    setTimeout(2);
+  protected void execute() {
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
-  protected boolean isFinished() 
-  {
-    
-    return isTimedOut();
+  protected boolean isFinished() {
+    return false;
   }
 
   // Called once after isFinished returns true

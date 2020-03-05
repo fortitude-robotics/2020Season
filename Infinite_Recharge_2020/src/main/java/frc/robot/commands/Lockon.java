@@ -8,12 +8,14 @@
 package frc.robot.commands;
 //import javax.lang.model.util.ElementScanner6;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
 public class Lockon extends Command 
 {
   double x,y,leftpwr,rightpwr;
   double Scale = 20;
+  boolean finish = false;
   public Lockon() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.limelight2);
@@ -24,18 +26,17 @@ public class Lockon extends Command
   @Override
   protected void initialize() 
   {
-    
+    Robot.limelight2.lightson();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() 
   {
-    Robot.limelight2.lightson();
     x = Robot.limelight2.getX();
     y = Robot.limelight2.getY();
-    System.out.println("val x = " + x);
-    System.out.println("val y = " + y);
+    SmartDashboard.putNumber("val x = ", x);
+    SmartDashboard.putNumber("val y = ", y);
     if( x > 0.8 || x < -0.8 )
     {
       if(x > 0.8)
@@ -69,6 +70,7 @@ public class Lockon extends Command
     else
     {
       Robot.drivetrain.directpwrfeed(0,0);
+      finish = true;
     }
 
   }
@@ -79,7 +81,7 @@ public class Lockon extends Command
   @Override
   protected boolean isFinished() 
   {
-    return true;
+    return finish;
   }
 
   // Called once after isFinished returns true
