@@ -44,6 +44,7 @@ public class Robot extends TimedRobot {
     shooter.setfollow();
     limelight2.lightsoff();
     shooter.GetTOFdistance();
+    limelight2.SetPIP();
   }
 
   /**

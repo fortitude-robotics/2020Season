@@ -49,6 +49,7 @@ public class Shooter extends Subsystem
 
   public void setfollow()
   {
+    //TOFS
     //follow controll
     shooterUpperB.follow(shooterUpperA);
     shooterLowerB.follow(shooterLowerA);
@@ -137,6 +138,9 @@ public class Shooter extends Subsystem
   {
     lowerConv.set(TalonSRXControlMode.PercentOutput,pwr);
   }
+  //time of flight sesor range output - base is ~42 in its current positon
+  //anything higher then 50 means a ball is there. use this to autostop the conveyer
+  //currently it set to push to hold and wont autostop
   public double GetTOFdistance()
   {
    SmartDashboard.putNumber("TOFS", tofS.getRange());
@@ -152,7 +156,26 @@ public class Shooter extends Subsystem
   //for debugging ======================================================================
   public void print()
   {
-    
+    boolean infeed_B = false;
+    boolean convLower_B = false;
+    boolean convUpper_B = false;
+    boolean convMain_B = false;
+    if(infeed.getMotorOutputPercent() != 0)
+    {
+      infeed_B = true;
+    }
+    if(uppperConv.getMotorOutputPercent() != 0)
+    {
+      convUpper_B = true;
+    }
+    if(lowerConv.getMotorOutputPercent() != 0)
+    {
+      convLower_B = true;
+    }
+    if(mainConv.getMotorOutputPercent() != 0)
+    {
+      convMain_B = true;
+    }
     int rpm_upper =  (-shooterUpperA.getSelectedSensorVelocity() * 10)/RobotMap.FALCON_CPR;
     int rpm_lower =  (-shooterLowerA.getSelectedSensorVelocity() * 10)/RobotMap.FALCON_CPR;
     rpm_upper = rpm_upper * 60;
@@ -163,5 +186,9 @@ public class Shooter extends Subsystem
     SmartDashboard.putNumber("VoltageL", -shooterLowerA.getMotorOutputVoltage());
     SmartDashboard.putNumber("PercentU", -shooterUpperA.getMotorOutputPercent());
     SmartDashboard.putNumber("PercentL", -shooterLowerA.getMotorOutputPercent());
+    SmartDashboard.putBoolean("Intake", infeed_B);
+    SmartDashboard.putBoolean("ConvUpper", convUpper_B);
+    SmartDashboard.putBoolean("ConvLower", convLower_B);
+    SmartDashboard.putBoolean("ConvMain", convMain_B);
   }
 }

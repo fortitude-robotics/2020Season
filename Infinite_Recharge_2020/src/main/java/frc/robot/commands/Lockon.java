@@ -24,13 +24,14 @@ public class Lockon extends Command
   @Override
   protected void initialize() 
   {
-    Robot.limelight2.lightson();
+    
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() 
   {
+    Robot.limelight2.lightson();
     x = Robot.limelight2.getX();
     y = Robot.limelight2.getY();
     System.out.println("val x = " + x);

@@ -46,9 +46,9 @@ public class OI
     buttonY.whileHeld(new Lockon());
     buttonX.whenPressed(new Fire());
     //buttonA.whenPressed(new Testing());
-    buttonB.whileHeld(new Intake(RobotMap.BUTTON_B,buttonB.get()));
-    Rbump.whileHeld(new Intake(RobotMap.BUTTON_RBUMP,Rbump.get()));
-    Lbump.whileHeld(new Intake(RobotMap.BUTTON_LBUMP,Lbump.get()));
+    buttonB.whenPressed(new Intake(RobotMap.BUTTON_B,buttonB.get()));
+    Rbump.whenPressed(new Intake(RobotMap.BUTTON_RBUMP,Rbump.get()));
+    Lbump.whenPressed(new Intake(RobotMap.BUTTON_LBUMP,Lbump.get()));
 
     
   }

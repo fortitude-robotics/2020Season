@@ -86,4 +86,8 @@ public class Camera extends Subsystem
   {
     NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
   }
+  public void SetPIP()
+  {
+    NetworkTableInstance.getDefault().getTable("limelight").getEntry("stream").setNumber(2);
+  }
 }

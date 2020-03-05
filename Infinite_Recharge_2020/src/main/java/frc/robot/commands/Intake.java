@@ -16,7 +16,6 @@ public class Intake extends Command
 {
   int buttonID = 0;
   boolean btnstat;
-  boolean finish = false;
   public Intake(int btnID, Boolean BtnStatus) 
   {
     buttonID = btnID;
@@ -35,27 +34,32 @@ public class Intake extends Command
   protected void execute() 
   {
     
-    if(!btnstat)
+    if(Robot.shooter.getconv() == 0)
     {
       if(buttonID == RobotMap.BUTTON_RBUMP)
       {
       Robot.shooter.SetLowerPower(0.3);
       Robot.shooter.SetIntakePower(-0.3);
+      Robot.shooter.SetMainPower(0.0);
+      Robot.shooter.SetUpperPower(0.0);
       }
       if(buttonID == RobotMap.BUTTON_LBUMP)
       {
       Robot.shooter.SetLowerPower(-0.3);
       Robot.shooter.SetIntakePower(0.3);
+      Robot.shooter.SetMainPower(0.0);
+      Robot.shooter.SetUpperPower(0.0);
       }
       if(buttonID == RobotMap.BUTTON_B)
       {
       Robot.shooter.SetMainPower(0.5);
       Robot.shooter.SetLowerPower(0.3);
       Robot.shooter.SetUpperPower(0.3);
+      Robot.shooter.SetIntakePower(0.0);
       }
       
     }
-    else
+    else //if(Robot.shooter.GetTOFdistance() > 54 || Robot.shooter.getconv() != 0)
     {
       Robot.shooter.SetLowerPower(0.0);
       Robot.shooter.SetIntakePower(0.0);
@@ -68,7 +72,7 @@ public class Intake extends Command
   @Override
   protected boolean isFinished() 
   {
-    return finish;
+    return true;
   }
 
   // Called once after isFinished returns true
