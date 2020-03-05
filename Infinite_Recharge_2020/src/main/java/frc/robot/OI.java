@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.Trigger;
 import frc.robot.commands.Fire;
+import frc.robot.commands.FireV2;
 import frc.robot.commands.Intake;
 import frc.robot.commands.Lockon;
 import frc.robot.commands.Testing;
@@ -44,11 +45,11 @@ public class OI
   public void OI()
   {
     buttonY.whileHeld(new Lockon());
-    buttonX.whenPressed(new Fire());
-    //buttonA.whenPressed(new Testing());
-    buttonB.whenPressed(new Intake(RobotMap.BUTTON_B,buttonB.get()));
-    Rbump.whenPressed(new Intake(RobotMap.BUTTON_RBUMP,Rbump.get()));
-    Lbump.whenPressed(new Intake(RobotMap.BUTTON_LBUMP,Lbump.get()));
+    buttonX.whenPressed(new Fire());  
+    buttonA.whenPressed(new FireV2());
+    buttonB.whenPressed(new Intake(RobotMap.BUTTON_B));
+    Rbump.whenPressed(new Intake(RobotMap.BUTTON_RBUMP));
+    Lbump.whenPressed(new Intake(RobotMap.BUTTON_LBUMP));
 
     
   }

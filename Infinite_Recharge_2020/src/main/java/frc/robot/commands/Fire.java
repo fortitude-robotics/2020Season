@@ -32,11 +32,13 @@ public class Fire extends Command
   {
     if(Robot.shooter.getSpeed() == 0)
     {
-      Robot.shooter.SetShooterPower(-0.8);
+      Robot.shooter.SetShooterPower(-1.0);
     }
-    else{
+    else
+    {
       Robot.shooter.SetShooterPower(0.0);
     }
+
     
   }
 
@@ -44,7 +46,7 @@ public class Fire extends Command
   @Override
   protected boolean isFinished() {
     return true;
-  }
+  } 
 
   // Called once after isFinished returns true
   @Override

@@ -54,10 +54,10 @@ public class Shooter extends Subsystem
     shooterUpperB.follow(shooterUpperA);
     shooterLowerB.follow(shooterLowerA);
     //ramp control
-    shooterUpperA.configOpenloopRamp(2);
-    shooterUpperB.configOpenloopRamp(2);
-    shooterLowerA.configOpenloopRamp(2);
-    shooterLowerB.configOpenloopRamp(2);
+    shooterUpperA.configOpenloopRamp(1);
+    shooterUpperB.configOpenloopRamp(1);
+    shooterLowerA.configOpenloopRamp(1);
+    shooterLowerB.configOpenloopRamp(1);
 
     //voltage comp
     /*
