@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.commands.AutoInstant;
 import frc.robot.subsystems.Camera;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.TankDrive;
@@ -29,7 +30,8 @@ public class Robot extends TimedRobot {
   public static Camera limelight2 = new Camera();
   public static Shooter shooter = new Shooter();
   Command m_autonomousCommand;
-  SendableChooser<Command> m_chooser = new SendableChooser<>();
+  Command AutoInstant;
+  SendableChooser<Command> m_chooser = new SendableChooser<AutoInstant>();
 
   /**
    * This function is run when the robot is first started up and should be
