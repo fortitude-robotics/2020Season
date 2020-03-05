@@ -47,8 +47,8 @@ public class Intake extends Command
       {
       Robot.shooter.SetLowerPower(-0.3);
       Robot.shooter.SetIntakePower(0.3);
-      Robot.shooter.SetMainPower(0.0);
-      Robot.shooter.SetUpperPower(0.0);
+      Robot.shooter.SetMainPower(-0.5);
+      Robot.shooter.SetUpperPower(-0.3);
       }
       if(buttonID == RobotMap.BUTTON_B)
       {
