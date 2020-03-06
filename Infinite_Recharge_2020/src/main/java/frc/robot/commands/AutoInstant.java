@@ -20,7 +20,7 @@ public class AutoInstant extends CommandGroup {
     // addSequential(new Command2());
     // these will run in order.
     addSequential(new AutoMove());
-
+    addSequential(new FireV2());
     // To run multiple commands at the same time,
     // use addParallel()
     // e.g. addParallel(new Command1());

@@ -41,14 +41,14 @@ public class Lockon extends Command
     {
       if(x > 0.8)
       {
-        leftpwr = 0.08;
-        rightpwr =  -0.08;
+        leftpwr = 0.12;
+        rightpwr =  -0.12;
         Robot.drivetrain.directpwrfeed(leftpwr, rightpwr);
       }
       if (x < -0.8)
       {
-        leftpwr = -0.08;
-        rightpwr =  0.08;
+        leftpwr = -0.12;
+        rightpwr =  0.12;
         Robot.drivetrain.directpwrfeed(leftpwr, rightpwr);
       }
     }
@@ -56,14 +56,14 @@ public class Lockon extends Command
     {
       if(y > 0.8)
       {
-        leftpwr = -0.1;
-        rightpwr =  -0.1;
+        leftpwr = -0.2;
+        rightpwr =  -0.2;
         Robot.drivetrain.directpwrfeed(leftpwr, rightpwr);
       }
       if (y < -0.8)
       {
-        leftpwr = 0.1;
-        rightpwr =  0.1;
+        leftpwr = 0.2;
+        rightpwr =  0.2;
         Robot.drivetrain.directpwrfeed(leftpwr, rightpwr);
       }
     }
