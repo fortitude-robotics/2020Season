@@ -26,6 +26,7 @@ public class AutoMove extends Command {
   protected void execute() 
   {
     Robot.drivetrain.Forward();
+    System.out.print("woking");
     setTimeout(2);
   }
 
