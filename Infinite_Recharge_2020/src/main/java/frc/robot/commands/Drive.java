@@ -30,18 +30,17 @@ public class Drive extends Command {
   protected void execute() 
   {
     Vector<Double> axis = Robot.m_oi.GetControllerRawAxis();
-    double RFactor;
-    double LFactor;
     double Power = (double) axis.elementAt(0);
     double Turn = (double) axis.elementAt(1);
 
     double leftPWR = 0;
     double rightPWR = 0;
+    Power = (((Math.pow(Power,3.0) + (1/4*Math.pow(Power,2.0))) + Power)/4); 
+    Turn = (((Math.pow(Turn,3.0) + (1/4*Math.pow(Turn,2.0))) + Turn)/4);
     Power = -Power;
-    Power = (Math.pow(Power,3))/2; 
-    Turn = (Math.pow(Turn,3))/2;
     leftPWR = Power + Turn;
     rightPWR = Power - Turn;
+    
     /*
     if(axisY <= 0.0)
     {

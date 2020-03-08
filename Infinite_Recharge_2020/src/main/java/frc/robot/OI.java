@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.Trigger;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.Fire;
 import frc.robot.commands.FireV2;
 import frc.robot.commands.Intake;
@@ -41,7 +42,8 @@ public class OI
   {
     Vector<Double> axis = new Vector<Double>();
     axis.add(F310.getRawAxis(1));
-    axis.add(F310.getRawAxis(2));
+    axis.add(F310.getRawAxis(4));
+    SmartDashboard.putNumber("axies", F310.getAxisCount());
     return axis;
   }
   public void OI()
