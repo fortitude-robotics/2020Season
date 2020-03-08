@@ -32,12 +32,17 @@ public class Drive extends Command {
     Vector<Double> axis = Robot.m_oi.GetControllerRawAxis();
     double RFactor;
     double LFactor;
-    double axisX = (double) axis.elementAt(0);
-    double axisY = (double) axis.elementAt(1);
+    double Power = (double) axis.elementAt(0);
+    double Turn = (double) axis.elementAt(1);
 
     double leftPWR = 0;
     double rightPWR = 0;
-
+    Power = -Power;
+    Power = (Math.pow(Power,3))/2; 
+    Turn = (Math.pow(Turn,3))/2;
+    leftPWR = Power + Turn;
+    rightPWR = Power - Turn;
+    /*
     if(axisY <= 0.0)
     {
       if(axisX > 0.0)
@@ -64,11 +69,12 @@ public class Drive extends Command {
         rightPWR = Math.copySign(Math.sqrt(Math.pow(Math.abs(axisY),2) - Math.pow(axisX, 2)),(Math.abs(axisY)-axisX));
       }
     }
+    */
   
-    LFactor = leftPWR * RobotMap.SCALEFACTOR; 
-    RFactor = rightPWR  * RobotMap.SCALEFACTOR;
+    //LFactor = leftPWR * RobotMap.SCALEFACTOR; 
+    //RFactor = rightPWR  * RobotMap.SCALEFACTOR;
 
-    Robot.drivetrain.directpwrfeed(LFactor,RFactor);
+    Robot.drivetrain.directpwrfeed(leftPWR,rightPWR);
   }
 
   // Make this return true when this Command no longer needs to run execute()

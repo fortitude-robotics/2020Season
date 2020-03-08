@@ -40,9 +40,8 @@ public class OI
   public Vector<Double> GetControllerRawAxis()
   {
     Vector<Double> axis = new Vector<Double>();
-    axis.add(F310.getX());
-    axis.add(F310.getY());
-    axis.add(F310.getZ());
+    axis.add(F310.getRawAxis(1));
+    axis.add(F310.getRawAxis(2));
     return axis;
   }
   public void OI()
