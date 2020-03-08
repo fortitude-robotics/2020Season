@@ -10,7 +10,9 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class Testing extends Command {
+public class Testing extends Command 
+{
+  boolean run = false;
   public Testing() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -25,20 +27,23 @@ public class Testing extends Command {
   @Override
   protected void execute() 
   {
-    if (Robot.shooter.getsol())
+    if (Robot.shooter.getsol() && !run)
     {
       Robot.shooter.intake_drop(false);
+      run = true;
     }
     else
     {
       Robot.shooter.intake_drop(true);
+      run = true;
     }
+    setTimeout(0.25);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    return isTimedOut();
   }
 
   // Called once after isFinished returns true

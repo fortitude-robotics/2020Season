@@ -35,6 +35,7 @@ public class OI
    private Button Lbump= new JoystickButton(F310,RobotMap.BUTTON_LBUMP);
    private Button Rbump= new JoystickButton(F310,RobotMap.BUTTON_RBUMP);
    private Button start = new JoystickButton(F310,RobotMap.BUTTON_START);
+   private Button back = new JoystickButton(F310, RobotMap.BUTTON_BACK);
   
   public Vector<Double> GetControllerRawAxis()
   {
@@ -53,6 +54,7 @@ public class OI
     Rbump.whenPressed(new Intake(RobotMap.BUTTON_RBUMP));
     Lbump.whenPressed(new Intake(RobotMap.BUTTON_LBUMP));
     start.whenPressed(new camlight());
+    back.whenReleased(new Testing());
     
   }
 }

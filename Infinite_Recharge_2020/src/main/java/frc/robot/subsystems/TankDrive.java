@@ -49,6 +49,11 @@ public class TankDrive extends Subsystem
 
   public void setfollow()
   {
+    leftFrontMotor.setOpenLoopRampRate(0.25);
+    rightFrontMotor.setOpenLoopRampRate(0.25);
+    leftRearMotor.setOpenLoopRampRate(0.25);
+    rightRearMotor.setOpenLoopRampRate(0.25);
+    
     leftRearMotor.follow(leftFrontMotor);
     rightRearMotor.follow(rightFrontMotor);
   }

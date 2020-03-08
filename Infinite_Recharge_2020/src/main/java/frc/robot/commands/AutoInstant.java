@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.WaitCommand;
 
 public class AutoInstant extends CommandGroup {
   /**
@@ -19,8 +20,9 @@ public class AutoInstant extends CommandGroup {
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());
     // these will run in order.
-    addSequential(new AutoMove());
     addSequential(new FireV2());
+    addSequential(new WaitCommand(2.5));
+    addSequential(new AutoMove());
     // To run multiple commands at the same time,
     // use addParallel()
     // e.g. addParallel(new Command1());
